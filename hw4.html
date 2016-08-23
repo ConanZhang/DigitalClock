@@ -1,0 +1,273 @@
+<!-- Submitted html will not display .swf files because they are not in this directory!-->
+<!-- Please see my actual site http://www.coe.utah.edu/~conanz/hw4.html to view this code with the .swf files!-->
+<!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="en">
+
+
+
+<head>
+	
+	<style>
+		body {background-image:url('Webpage/Matrix Text.gif');}
+	</style>
+	
+	<meta charset="utf-8">
+	
+	<title>Homework 4 - Digital Clock</title>
+	
+	<meta name="author" content="Conan Zhang">
+
+</head>
+
+<body>
+ 
+
+<!-- CS 1410 WEB Page -->
+
+<!-- Author: Conan Zhang -->
+
+<!-- Date: 09-25-13 -->
+
+<!-- Assignment: Homework 4 - Digital Clock -->
+ 
+<center>
+
+<h1>
+	<font color="00cc00">
+	<font face="garamond">
+		Homework 4 - Digital Clock
+	</font>
+</h1>
+
+<table border="1" bgcolor="#040204">
+
+	<tr>
+		<td colspan=2>
+			<center>
+			<h2>
+			Digital Clock<br/>
+			Conan Zhang<br/>
+			09-20-13<br/>
+			Adobe Flash Professional CS5
+			</h2>
+			</center>
+		<td>
+	</tr>
+	
+	<tr>
+		<td>
+			<object
+				data="clock/Run_Clocks.swf"
+
+				type="application/x-shockwave-flash"
+
+				width="700" height="400" >
+
+				<param name="quality" value="high" />
+
+				<param value="Run_Clocks.swf" name="movie" /> 
+
+			 </object>
+		</td>
+
+		<td>
+
+			<p>
+				This is my digital clock I made through Action Script 3.0. It consists of two class<br/>
+				files, one that draws the digits and one that updates the digits according to a 'ticker'<br/>
+				that receives the time from the computer.
+			</p>
+
+			<p>
+				Finding out how to draw the digits onto the clock was very straightforward, the problem<br/>
+				was finding out how to remove them and redraw them so they don't all become 8's <br/>
+				(because an 8 digit has every segment in the digit drawn). This was solved by<br/>
+				utilizing the function this.graphics.clear() in the correct position to remove<br/>
+				the digit before drawing another one.
+			</p>
+			
+			<p>
+				After that was solved, the next problem was finding out how to convert a two<br/>
+				digit numbers like "12' into two one digit numbers so that the digits can be<br/>
+				drawn. This was solved by using modulo (%) to divide the numbers by 10 and <br/>
+				give the remainder. For  the example 12, 12 % 10 would give us 2. This is<br/>
+				would provide us with the necessary digit to draw the last number of our<br/>
+				time.
+			</p>
+			
+			<p>
+				I actually did something really stupid with drawing the digits, as I did the<br/>
+				above for the LAST digits of my time, but NOT my FIRST digits. I came up with<br/>
+				the absolutely ridiculous solution of defining every 10 digit interval for<br/>
+				what digit to draw for the 10's place. An example is to check if the hour <br/>
+				is less that 20 and greater than 9, if this is true, draw a "1" in the 10's <br/>
+				place. If the hour is less than 25 and greater then 19, draw a "2" in the <br/>
+				10's place. 
+			</p>
+			
+			<p>
+				This carried on for MANY lines of code...
+			</p>
+
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<object
+				data="clock/Run_Clocks_Milliseconds.swf"
+
+				type="application/x-shockwave-flash"
+
+				width="700" height="400" >
+
+				<param name="quality" value="high" />
+
+				<param value="Run_Clocks_Milliseconds.swf" name="movie" /> 
+
+			 </object>
+		</td>
+
+		<td>
+
+			<p>
+				This is my digital clock with the added functionality of displaying milliseconds.<br/>
+			</p>
+			
+			<p>
+				It was a relatively easy addition, as the code to draw and receive the current<br/>
+				milliseconds was almost the exact same as the rest of the digits.
+			</p>
+			
+			<p>
+				A difference that did come up was that if you trace() or print the milliseconds,<br/>
+				you might get a number with three digits instead of two because milliseconds are<br/>
+				a thousandths of a second, not a hundredth! 
+			</p>
+			
+			<p>
+				To follow up with that, my stupid solution was to define every 100 second interval<br/>
+				instead of just using % to find the first number of the milliseconds.
+			</p>
+			
+			<p>
+				I am regret.
+			</p>
+			
+			<p>
+				The main problem was the fact that the milliseconds couldn't update<br/>
+				fast enough because a thousandths of a second is pretty fast! To fix this, I raised<br/>
+				the frame rate until a milliseconds looked like they were going "fast enough".
+			</p>
+
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<object
+				data="clock/Run_Clocks_Shadow.swf"
+
+				type="application/x-shockwave-flash"
+
+				width="700" height="400" >
+
+				<param name="quality" value="high" />
+
+				<param value="Run_Clocks_Shadow.swf" name="movie" /> 
+
+			 </object>
+		</td>
+
+		<td>
+
+			<p>
+				The next addition to my digital clock was 'shadows' in the background. The purpose<br/>
+				of this is to imply that there are segments that are not being used to display the<br/>
+				current time. It is a purely aesthetic addition, but probably more useful for actual<br/>
+				physical digital clocks.
+			</p>
+			
+			<p>
+				It was quite simple, as all I did was make a separate class to draw the shadows.<br/>
+				It basically drew a darkened eight digit using the exact same drawing commands as<br/>
+				the other digits.
+			</p>
+			
+			<p>
+				The main problem that came up was the shadows were drawn on top of the digits!<br/>
+				This just made every digit display a darkened 8. The quick and easy fix was to<br/>
+				draw the shadows first, and then have the actual digits drawn on top of the shadows.<br/>
+				This was done by simply rearranging the order of the code.
+			</p>
+			
+			<p>
+				Someone who is really good at observing things may notice that the milliseconds<br/>
+				of this clock eventually start to not match with the milliseconds of the above<br/>
+				clock. I believe this is because the computer really can't update the digits fast<br/>
+				enough at the EXACT same time, so we eventually see nuances. 
+			</p>
+
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<object
+				data="clock/Run_Clocks_Art.swf"
+
+				type="application/x-shockwave-flash"
+
+				width="700" height="400" >
+
+				<param name="quality" value="high" />
+
+				<param value="Run_Clocks_Art.swf" name="movie" /> 
+
+			 </object>
+		</td>
+
+		<td>
+
+			<p>
+				The last addition to my digital clock was an artistic background. It was fun<br/>
+				coming up with an idea to put my clock on and I am quite satisfied with the results.
+			</p>
+			
+			<p>
+				The background is dynamite, implying that this is a time bomb! Little do people<br/>
+				know it is just a harmless clock!
+			</p>
+			
+			<p>
+				I live life on the edge.
+			</p>
+			
+			<p>
+				This file is MASSIVE because the clock is actually the same size as the other<br/>
+				clocks on this page. I just resized the entire stage to fit it in the same area<br/>
+				as the rest. You may notice the effects of this, as if you reload the page<br/>
+				here, the file takes about a second to start.
+			</p>
+			
+			<p>
+				Doom is imminent, but when?
+			</p>
+
+		</td>
+	</tr>
+</table>
+
+<br/>
+
+</center> 
+
+</body>
+
+
+
+</html>
+ 
